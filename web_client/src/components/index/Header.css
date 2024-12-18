@@ -1,0 +1,154 @@
+.header {
+    flex: 1; /* Забезпечує, що контент займатиме доступний простір */
+    text-align: center;
+    padding: 100px 20px;
+    color: white;
+  
+    background-size: cover;
+    background-position: center; /* Центрує зображення по горизонталі та вертикалі */
+    background-repeat: no-repeat; /* Запобігає повторенню зображення */
+  
+    /* Анімація */
+    overflow: hidden; /* Ховаємо вміст за межами контейнера */
+    padding: 10px;
+    position: relative;
+}
+  
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Затемнюючий шар, змініть прозорість за потреби */
+    z-index: 1; /* Перекриває фонове зображення */
+}
+  
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0;
+  
+    /* це треба для того щоб не затемнювався контент від затемнення фону хедера */
+    position: relative;
+    z-index: 2;
+  
+    transform: translateY(100%);
+    animation: slideUpWithOvershootAndFastReturn 1s cubic-bezier(0.42, 0, 0.58, 1.5) forwards; /* Анімація з прискоренням в кінці */
+    animation-delay: 0.3s; /* Затримка перед початком анімації */
+    padding: 10px;
+}
+  
+.header-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  @keyframes slideUpWithOvershootAndFastReturn {
+    0% {
+      opacity: 0;
+      transform: translateY(100%); /* Починає з нижньої частини контейнера */
+    }
+    80% {
+      opacity: 1;
+      transform: translateY(-10px); /* Виїжджає трохи вище своєї кінцевої позиції */
+    }
+    90% {
+      transform: translateY(-5px); /* Швидкий зворотний рух ближче до свого місця */
+    }
+    100% {
+      transform: translateY(0); /* Повертається на своє місце */
+    }
+}
+  
+.header-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 20px;
+    color: white;
+}
+  
+.header-text {
+    font-size: 20px;
+    margin-bottom: 40px;
+    color: white;
+}
+  
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+  
+.btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+.btn-primary {
+    background-color:#97ef98;
+    color: #333;
+    font-weight: bold;
+}
+  
+.btn-primary:hover {
+    background-color: #7cd48c;
+}
+  
+.btn-secondary {
+    background-color: #e5eaec;
+    color: #2e4c5cc8;
+}
+  
+.btn-secondary:hover {
+    background-color: #e7f8eac0;
+}
+  
+  /* Адаптивна розмітка для телефонів */
+@media (max-width: 768px) {
+    .header {
+      padding: 60px 10px;
+    }
+  
+    .header-title {
+      font-size: 32px;
+    }
+  
+    .header-text {
+      font-size: 16px;
+    }
+  
+    .cta-buttons {
+      flex-direction: column; /* Кнопки одна під одною */
+      gap: 10px;
+    }
+  
+    .btn {
+      width: 100%; /* Кнопки на всю ширину екрану */
+    }
+  }
+  
+@media (max-width: 480px) {
+    .header {
+      padding: 40px 5px;
+    }
+  
+    .header-title {
+      font-size: 24px;
+    }
+  
+    .header-text {
+      font-size: 14px;
+    }
+  
+    .btn {
+      font-size: 14px;
+      padding: 10px 20px;
+    }
+}
+  

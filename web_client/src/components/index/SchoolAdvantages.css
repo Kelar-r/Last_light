@@ -1,0 +1,50 @@
+.advantages-container {
+    display: flex;
+    justify-content: center; /* Відстань між картками */
+    padding: 20px;
+    flex-wrap: wrap; /* Адаптивна розмітка */
+    gap: 30px; /* Мінімальна відстань між картками */
+    background-color: #cad4d6; /* Фон контейнера */
+  }
+  
+  .advantage-card {
+    background-color: #ffffff; /* Білі картки */
+    border-radius: 4px; /* Менш заокруглені кути */
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 300px; /* Максимальна ширина картки */
+    min-height: 350px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .advantage-card:hover {
+    transform: scale(1.05); /* Тільки збільшення при наведенні */
+  }
+  
+  .icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #509249;
+    text-shadow: 0px 0px #26910f;
+  }
+  
+  .description {
+    font-size: 16px;
+    color: #4e9967;
+  }
+  
+  /* Адаптивна стилізація для мобільних пристроїв */
+  @media (max-width: 768px) {
+    .advantage-card {
+      margin-bottom: 30px; /* Відступи між картками для мобільних */
+    }
+  }
+  

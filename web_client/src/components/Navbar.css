@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+/* Основний стиль навбара */
+.navbar {
+  background-color: white;
+  padding: 10px 20px;
+  position: relative; /* Додаємо позиціювання */
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Логотип навбара */
+.logo {
+  width: 60px;
+  height: auto;
+}
+
+/* Меню навбара */
+.navbar-menu {
+  display: flex;
+  list-style: none;
+}
+
+.navbar-item a {
+  color: #2a5a31;
+  text-decoration: none;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-item a:hover {
+  background-color: #cad4d6;
+}
+
+/* Іконка "гамбургер" */
+.hamburger {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* Випадаюче меню */
+.dropdown-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Напівпрозоре тло */
+  opacity: 0;
+  pointer-events: none; /* Вимикає взаємодію з елементом, коли меню закрите */
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+.dropdown-wrapper.show {
+  opacity: 1;
+  pointer-events: all; /* Включає взаємодію при відкритті меню */
+}
+
+.dropdown-menu {
+  margin: 0%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 250px;
+  background-color: #54945c;
+  transform: translateX(100%); /* Ховаємо меню за межами правої сторони */
+  transition: transform 0.3s ease; /* Додаємо анімацію виковзування */
+  z-index: 1000;
+}
+
+.dropdown-wrapper.show .dropdown-menu {
+  transform: translateX(0); /* Показуємо меню анімацією */
+}
+
+.dropdown-list {
+  padding-left: 15px;
+  padding-right: 15px;
+  list-style: none;
+}
+
+.dropdown-list li {
+  padding: 15px;
+  text-align: left;
+}
+
+.dropdown-list li a {
+  color: white;
+  text-decoration: none;
+}
+
+.dropdown-list li a:hover {
+  background-color: #004a99;
+}
+
+/* Кнопка закриття */
+.close-btn {
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  color: white;
+  font-size: 30px;
+  padding: 15px;
+}
+
+.close-btn:hover {
+  background-color: #ff1a1a;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: none; /* Ховаємо стандартне меню на мобільних пристроях */
+  }
+
+  .hamburger {
+    display: block; /* Показуємо іконку "гамбургер" */
+  }
+
+  .body-locked {
+    overflow: hidden; /* Забороняємо прокрутку сторінки, коли меню відкрито */
+  }
+}
