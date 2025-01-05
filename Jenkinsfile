@@ -20,11 +20,15 @@ pipeline {
             steps {
                 script {
                     containerId = sh(script: "docker ps | grep 'last_light-client'  | cut -b 1-12", returnStdout: true)
-                    
+
+
+                    //if container curently running
                     if (containerId) {
                         currentBuild.description = "Container running: ${containerId}"
                         is_Running = true
-                    } else {
+                    } 
+                    
+                    else {
                         currentBuild.description = "Container ${containerId} is not running."
                         is_Running = false
                     }
@@ -33,6 +37,7 @@ pipeline {
         }
         
         stage('Stopping container') {
+            // if running we go and stop it
             when {
                 expression { is_Running }
             }
@@ -50,8 +55,8 @@ pipeline {
         stage('Clone repository') {
             steps {
                 script {
-                    sh "rm -rf ${TARGET_DIR}"
-                    sh "git clone -b ${BRANCH} ${REPO_URL} ${TARGET_DIR}"
+                    sh "rm -rf ${TARGET_DIR}"                                       //Delete before builds
+                    sh "git clone -b ${BRANCH} ${REPO_URL} ${TARGET_DIR}"           //clone new one
                 }
             }
         }
@@ -60,6 +65,7 @@ pipeline {
         stage('Replace docker-compose.yml') {
             steps {
                 script {
+                    //Check if exist docker-compose.yml file if not stoping build
                     if (fileExists(DOCKER_COMPOSE_FILE)) {
                         sh "cp ${DOCKER_COMPOSE_FILE} ${TARGET_FILE}"
                         echo "Файл docker-compose.yml успішно замінено."
@@ -71,6 +77,7 @@ pipeline {
         }
 
 
+        //Last stage deployment
         stage('Build container') {
             steps {
                 script {
