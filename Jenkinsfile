@@ -14,11 +14,7 @@ pipeline {
     }
 
 
-    parameters {
-        file(name: 'dockerComposeFile', description: 'Select docker-compose.yml')
-    }
-
-
+    
     stages {
         stage('Check running container or not') {
             steps {
